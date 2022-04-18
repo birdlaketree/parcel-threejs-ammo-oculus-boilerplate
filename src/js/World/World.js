@@ -7,7 +7,13 @@ import { createLights } from './components/lights.js';
 import { createFloor } from './components/meshes/floor.js';
 import { VrControls } from './system/VrControls.js';
 import { hingeComposition } from './components/bodies/hingeComposition.js';
+import { sphere } from './components/meshes/sphere.js';
+import { colorPhysicalMaterial } from './components/materials/color.js';
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { AmmoPhysics, PhysicsLoader } from '@enable3d/ammo-physics';
+import { PMREMGenerator } from 'three';
+
+const hdrURL = new URL('/assets/textures/hdr/old_quarry_gerlingen_2k.hdr', import.meta.url);
 
 class World {
   constructor() {
@@ -26,28 +32,41 @@ class World {
     const vrControls = new VrControls(this.renderer, dolly, this.camera);
     this.loop.updatables.push(vrControls);
 
-    PhysicsLoader('static/ammo', () => this.ammoStart());  
+    PhysicsLoader('static/ammo', () => this.ammoStart());
   }
 
   ammoStart() {
-    console.log('ammoStart.1');
+    console.log('ammoStart.2');
 
-    const physics = new AmmoPhysics(this.scene);
+    this.physics = new AmmoPhysics(this.scene);
     // physics.debug.enable(true);
-    this.loop.setPhysics(physics);
+    this.loop.setPhysics(this.physics);
 
-    const ground = physics.add.ground({ width: this.floorSize, height: this.floorSize, depth: 10, y:-5 });
+    const ground = this.physics.add.ground({ width: this.floorSize, height: this.floorSize, depth: 10, y:-5 });
     ground.visible = false;
 
-    const nItems = 8;
+    new RGBELoader().load(hdrURL, (hdrmap) => this.buildScene(hdrmap));
+  }
+
+  buildScene(hdrmap) {
+    console.log('buildScene.2');
+    const envmaploader = new PMREMGenerator(this.renderer);
+    const envmap = envmaploader.fromCubemap(hdrmap);
+    // console.log('buildScene.1', envmap.texture);
+    
+    const nItems = 12;
     const spreadWidth = 10;
     const hue = Math.random();
     // const hue = 0.6;
 
     for (let i = 0; i < nItems; i++) {
       const hcp = {x: Math.random() * spreadWidth - spreadWidth/2, y:3, z:Math.random() * spreadWidth - spreadWidth/2};
-      const hc = hingeComposition(hcp, hue, this.scene, this.loop, physics);
+      const hc = hingeComposition(hcp, hue, this.scene, this.loop, this.physics, envmap);
     }
+
+    // const sphereMaterial = colorPhysicalMaterial('0xffffff', envmap);
+    // const s = sphere(sphereMaterial, 1);
+    // this.scene.add(s); 
   }
 
   start() {

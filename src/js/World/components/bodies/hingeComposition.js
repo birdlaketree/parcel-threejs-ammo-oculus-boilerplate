@@ -1,4 +1,8 @@
 import { Color } from "three";
+import {
+  colorPhysicalMaterialA,
+  colorPhysicalMaterialB
+} from "../materials/physicalMaterial";
 import { colorStandardMaterial } from "../materials/color";
 import { tickedGroup } from "../meshes/tickedGroup";
 import { cube } from "../meshes/cube";
@@ -9,8 +13,11 @@ const hingeComposition = (
   hue,
   scene,
   loop,
-  physics
+  physics,
+  envmap
   ) => {
+
+  console.log('hingeComposition');
 
   const hueShift = hue + Math.random() * 0.2 - 0.1;
   const s1 = 1;
@@ -24,9 +31,9 @@ const hingeComposition = (
   const color2 = new Color();
   color2.setHSL(hueShift, s2, l2);
 
-  const material_a = colorStandardMaterial(color1);
-  const material_b = colorStandardMaterial(color2);
-  const material_white = colorStandardMaterial(0xffffff);
+  const materialAPhysical = colorPhysicalMaterialA(color1, envmap);
+  const materialBPhysical = colorPhysicalMaterialB(color2, envmap);
+  const materialWhite = colorStandardMaterial(0xffffff);
 
   const baseX = position.x;
   const baseY = position.y;
@@ -43,7 +50,7 @@ const hingeComposition = (
   const baseWidth = 0.5;
   const baseHeightDepth = 0.5;
 
-  const base = cube(material_a, baseWidth, baseHeightDepth, baseHeightDepth);
+  const base = cube(materialAPhysical, baseWidth, baseHeightDepth, baseHeightDepth);
   base.castShadow = true;
   base.position.x = baseX;
   base.position.y = baseY;
@@ -65,14 +72,14 @@ const hingeComposition = (
   scene.add(handleA);
 
   // should not colide with an object so it is inside of the base
-  let markerA = sphere(material_white, 0.05);
+  let markerA = sphere(materialWhite, 0.05);
   markerA.position.x = 0;
   markerA.position.y = 0;
   markerA.position.z = -(baseHeightDepth/2 + bodyHeightDepth/2);
   markerA.visible = false;
   handleA.add(markerA);
 
-  const handleABody = cube(material_b, bodyHeightDepth, bodyAWidth, bodyHeightDepth);
+  const handleABody = cube(materialBPhysical, bodyHeightDepth, bodyAWidth, bodyHeightDepth);
   handleABody.castShadow = true;
   handleABody.position.x = 0;
   handleABody.position.y = -bodyAWidth/2 + bodyHeightDepth/2;

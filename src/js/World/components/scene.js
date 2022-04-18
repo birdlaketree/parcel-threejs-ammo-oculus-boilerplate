@@ -10,7 +10,7 @@ const createScene = renderer => {
   scene.fog = fog;
   
   const pmremGenerator = new PMREMGenerator(renderer);
-  scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.001 ).texture;
+  // scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.001 ).texture;
 
   return scene;
 }

@@ -83,7 +83,7 @@ class VrControls {
     const session = this.renderer.xr.getSession();
     if (session) {
       this.camera.getWorldDirection(this.cameraVector);
-      let velocityTranslation = 0.1;
+      let velocityTranslation = 0.05;
       let velocityRotation = 0.4;
 
       for (const source of session.inputSources) {

@@ -8,7 +8,7 @@ import { createFloor } from './components/meshes/floor.js';
 import { VrControls } from './system/VrControls.js';
 import { hingeComposition } from './components/bodies/hingeComposition.js';
 import { sphere } from './components/meshes/sphere.js';
-import { colorPhysicalMaterial } from './components/materials/color.js';
+import { physicalMaterialShinyMetal} from './components/materials/physicalMaterial.js'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { AmmoPhysics, PhysicsLoader } from '@enable3d/ammo-physics';
 import { PMREMGenerator } from 'three';
@@ -36,7 +36,7 @@ class World {
   }
 
   ammoStart() {
-    console.log('ammoStart.2');
+    console.log('ammoStart.3');
 
     this.physics = new AmmoPhysics(this.scene);
     // physics.debug.enable(true);
@@ -49,10 +49,9 @@ class World {
   }
 
   buildScene(hdrmap) {
-    console.log('buildScene.2');
+    console.log('buildScene.3');
     const envmaploader = new PMREMGenerator(this.renderer);
     const envmap = envmaploader.fromCubemap(hdrmap);
-    // console.log('buildScene.1', envmap.texture);
     
     const nItems = 12;
     const spreadWidth = 10;
@@ -64,9 +63,9 @@ class World {
       const hc = hingeComposition(hcp, hue, this.scene, this.loop, this.physics, envmap);
     }
 
-    // const sphereMaterial = colorPhysicalMaterial('0xffffff', envmap);
-    // const s = sphere(sphereMaterial, 1);
-    // this.scene.add(s); 
+    const sphereMaterial = physicalMaterialShinyMetal(0xffffff, envmap);
+    const s = sphere(sphereMaterial, 1);
+    this.scene.add(s); 
   }
 
   start() {

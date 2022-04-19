@@ -11,7 +11,7 @@ const normalMapUrl       = new URL('/assets/textures/Water_1_M_Normal.jpg', impo
 const clearcoatNormalMapUrl       = new URL('/assets/textures/Scratched_gold_01_1K_Normal.png', import.meta.url);
 // const roughnessMapUrl    = new URL('/assets/textures/Concrete_Damaged_tfvfdacn_2K_surface_ms/tfvfdacn_2K_Roughness.jpg', import.meta.url);
 
-const colorPhysicalMaterialA = (color, envmap) => {
+const physicalMaterialA = (color, envmap) => {
   // const mapTexture = textureHandler(mapUrl);
   // const aoTexture = textureHandler(aoMapUrl);
   // const displacementTexture = textureHandler(displacementMapUrl);
@@ -23,7 +23,6 @@ const colorPhysicalMaterialA = (color, envmap) => {
     envMap: envmap.texture,
 
     clearcoat: 0.4,
-    cleacoatRoughness: 1,
 		metalness: 0.1,
     roughness: 0.8,
     color: color,
@@ -46,7 +45,7 @@ const colorPhysicalMaterialA = (color, envmap) => {
   return material;
 }
 
-const colorPhysicalMaterialB = (color, envmap) => {
+const physicalMaterialB = (color, envmap) => {
   // const mapTexture = textureHandler(mapUrl);
   // const aoTexture = textureHandler(aoMapUrl);
   // const displacementTexture = textureHandler(displacementMapUrl);
@@ -58,7 +57,6 @@ const colorPhysicalMaterialB = (color, envmap) => {
     envMap: envmap.texture,
 
     clearcoat: 0.2,
-    cleacoatRoughness: 1,
 		metalness: 0.1,
     roughness: 0.9,
     color: color,
@@ -80,7 +78,20 @@ const colorPhysicalMaterialB = (color, envmap) => {
   return material;
 }
 
+const physicalMaterialShinyMetal = (color, envmap) => {
+  const parameters = {
+    color: color,
+    emissive: 0x000000,
+    roughness: 0,
+    metalness: 1,
+    envMap: envmap.texture
+  } 
+  const material = new MeshPhysicalMaterial(parameters);
+  return material;
+}
+
 export {
-  colorPhysicalMaterialA,
-  colorPhysicalMaterialB
+  physicalMaterialA,
+  physicalMaterialB,
+  physicalMaterialShinyMetal
 };

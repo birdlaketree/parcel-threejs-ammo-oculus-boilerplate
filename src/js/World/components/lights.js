@@ -1,6 +1,6 @@
 import { AmbientLight, DirectionalLight, PointLight } from 'three';
 import { sphere } from './meshes/sphere';
-import { colorStandardMaterial } from './materials/color';
+import { colorStandardMaterial } from './materials/standardMaterial.js';
 
 const createLights = scene => {
   const pointMaterial = colorStandardMaterial(0x222222);
@@ -21,20 +21,20 @@ const createLights = scene => {
   point1.shadow.mapSize.width = 4096;
   point1.shadow.mapSize.height = 4096;
   scene.add(point1);
-  // const point1marker = sphere(pointMaterial, 0.1);
-  // point1.add(point1marker);
+  const point1marker = sphere(pointMaterial, 0.1);
+  point1.add(point1marker);
 
   const point2 = new PointLight( 0xdddddd, 2, 40 );
   point2.position.set( -5, 3, 5 );
   scene.add(point2);
-  // const point2marker = sphere(pointMaterial, 0.1);
-  // point2.add(point2marker);
+  const point2marker = sphere(pointMaterial, 0.1);
+  point2.add(point2marker);
 
   const point3 = new PointLight( 0xdddddd, 2, 40 );
   point3.position.set( 5, 3, -5 );
   scene.add(point3);
-  // const point3marker = sphere(pointMaterial, 0.1);
-  // point3.add(point3marker);
+  const point3marker = sphere(pointMaterial, 0.1);
+  point3.add(point3marker);
 }
 
 export { createLights };

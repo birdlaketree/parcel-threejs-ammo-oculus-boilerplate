@@ -1,9 +1,9 @@
 import { Color } from "three";
 import {
-  colorPhysicalMaterialA,
-  colorPhysicalMaterialB
+  physicalMaterialA,
+  physicalMaterialB
 } from "../materials/physicalMaterial";
-import { colorStandardMaterial } from "../materials/color";
+import { colorStandardMaterial } from "../materials/standardMaterial.js";
 import { tickedGroup } from "../meshes/tickedGroup";
 import { cube } from "../meshes/cube";
 import { sphere } from "../meshes/sphere";
@@ -31,8 +31,8 @@ const hingeComposition = (
   const color2 = new Color();
   color2.setHSL(hueShift, s2, l2);
 
-  const materialAPhysical = colorPhysicalMaterialA(color1, envmap);
-  const materialBPhysical = colorPhysicalMaterialB(color2, envmap);
+  const materialAPhysical = physicalMaterialA(color1, envmap);
+  const materialBPhysical = physicalMaterialB(color2, envmap);
   const materialWhite = colorStandardMaterial(0xffffff);
 
   const baseX = position.x;

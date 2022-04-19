@@ -63,9 +63,9 @@ class World {
       const hc = hingeComposition(hcp, hue, this.scene, this.loop, this.physics, envmap);
     }
 
-    const sphereMaterial = physicalMaterialShinyMetal(0xffffff, envmap);
-    const s = sphere(sphereMaterial, 1);
-    this.scene.add(s); 
+    // const sphereMaterial = physicalMaterialShinyMetal(0xffffff, envmap);
+    // const s = sphere(sphereMaterial, 1);
+    // this.scene.add(s); 
   }
 
   start() {

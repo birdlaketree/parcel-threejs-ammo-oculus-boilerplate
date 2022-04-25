@@ -1,4 +1,4 @@
-## parcel-threejs-boilerplate
+## parcel-threejs-ammo-oculus-boilerplate
 Boilerplate for a fast start with three.js and ammo physics engine on Oculus Quest 2 VR headset.
 - only tested on Oculus Quest 2
 - movement is controlled with joystick

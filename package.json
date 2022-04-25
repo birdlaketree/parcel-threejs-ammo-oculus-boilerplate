@@ -1,5 +1,5 @@
 {
-  "name": "parcel-threejs-ammo-oculus",
+  "name": "parcel-threejs-ammo-oculus-boilerplate",
   "source": "src/index.html",
   "targets": {
     "default": {

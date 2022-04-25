@@ -36,7 +36,7 @@ class World {
   }
 
   ammoStart() {
-    console.log('ammoStart.3');
+    console.log('ammoStart.4');
 
     this.physics = new AmmoPhysics(this.scene);
     // physics.debug.enable(true);
@@ -49,7 +49,7 @@ class World {
   }
 
   buildScene(hdrmap) {
-    console.log('buildScene.3');
+    console.log('buildScene.4');
     const envmaploader = new PMREMGenerator(this.renderer);
     const envmap = envmaploader.fromCubemap(hdrmap);
     

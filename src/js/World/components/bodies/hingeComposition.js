@@ -1,7 +1,8 @@
 import { Color } from "three";
 import {
   physicalMaterialA,
-  physicalMaterialB
+  physicalMaterialB,
+  matteFrostedPlastics
 } from "../materials/physicalMaterial";
 import { colorStandardMaterial } from "../materials/standardMaterial.js";
 import { tickedGroup } from "../meshes/tickedGroup";

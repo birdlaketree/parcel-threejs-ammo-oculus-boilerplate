@@ -1,4 +1,4 @@
-import { WebGLRenderer, sRGBEncoding, PCFSoftShadowMap } from 'three';
+import { WebGLRenderer, sRGBEncoding, PCFSoftShadowMap, ACESFilmicToneMapping } from 'three';
 import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 
 const createRenderer = () => {
@@ -6,6 +6,10 @@ const createRenderer = () => {
   renderer.physicallyCorrectLights = true;
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
+
+  // renderer.toneMapping = ACESFilmicToneMapping;
+	// renderer.toneMappingExposure = 1;
+
   renderer.outputEncoding = sRGBEncoding;
 
   renderer.shadowMap.enabled = true;

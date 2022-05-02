@@ -9,6 +9,8 @@ import { colorStandardMaterial } from "../materials/standardMaterial.js";
 import { tickedGroup } from "../meshes/tickedGroup";
 import { cube } from "../meshes/cube";
 import { sphere } from "../meshes/sphere";
+import { capsule } from "../meshes/capsule";
+import { cylinder } from "../meshes/cylinder";
 
 const hingeComposition = (
   position = {x:0, y:3, z:0},
@@ -53,6 +55,7 @@ const hingeComposition = (
   // const baseHeightDepth = 0.5;
 
   const base = cube(materialAPhysical, baseWidth, baseHeightDepth, baseHeightDepth);
+  // const base = cylinder(materialAPhysical, baseWidth, baseHeightDepth);
   base.castShadow = true;
   base.position.x = baseX;
   base.position.y = baseY;
@@ -82,6 +85,7 @@ const hingeComposition = (
   handleA.add(markerA);
 
   const handleABody = cube(materialBPhysical, bodyHeightDepth, bodyAWidth, bodyHeightDepth);
+  // const handleABody = cylinder(materialBPhysical, bodyAWidth, bodyHeightDepth);
   handleABody.castShadow = true;
   handleABody.position.x = 0;
   handleABody.position.y = -bodyAWidth/2 + bodyHeightDepth/2;

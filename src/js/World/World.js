@@ -37,7 +37,7 @@ class World {
     console.log('ammoStart.4');
 
     this.physics = new AmmoPhysics(this.scene);
-    // physics.debug.enable(true);
+    // this.physics.debug.enable(true);
     this.loop.setPhysics(this.physics);
 
     const ground = this.physics.add.ground({ width: this.floorSize, height: this.floorSize, depth: 10, y:-5 });

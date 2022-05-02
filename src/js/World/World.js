@@ -12,6 +12,7 @@ import { physicalMaterialShinyMetal} from './components/materials/physicalMateri
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { AmmoPhysics, PhysicsLoader } from '@enable3d/ammo-physics';
 import { PMREMGenerator } from 'three';
+import { matteFrostedPlastics, shinyNoiseMetal, plasticColor } from './components/materials/physicalMaterial.js';
 
 const hdrURL = new URL('/assets/textures/hdr/studio_small_08_2k.hdr', import.meta.url);
 
@@ -62,6 +63,17 @@ class World {
       const hcp = {x: Math.random() * spreadWidth - spreadWidth/2, y:3, z:Math.random() * spreadWidth - spreadWidth/2};
       const hc = hingeComposition(hcp, hue, this.scene, this.loop, this.physics, envmap);
     }
+
+    // const cItems = 100;
+    // const materialCPhysical = plasticColor(0x000000, envmap);
+    // for (let i = 0; i < cItems; i++) {
+    //   const sphereItem = sphere(materialCPhysical, 0.02);
+    //   sphereItem.position.x = Math.random() * spreadWidth - spreadWidth/2;
+    //   sphereItem.position.y = Math.random() + 2;
+    //   sphereItem.position.z = Math.random() * spreadWidth - spreadWidth/2;
+    //   this.scene.add(sphereItem); 
+    //   this.physics.add.existing(sphereItem);
+    // } 
 
     // const sphereMaterial = physicalMaterialShinyMetal(0xffffff, envmap);
     // const s = sphere(sphereMaterial, 1);

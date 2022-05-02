@@ -26,10 +26,10 @@ const createFloor = (scene, width = 20, height = 20, envmap) => {
   const displacement = 0.02;
   const parameters = {
     envMap: envmap.texture,
-    envMapIntensity: 1.8,
+    envMapIntensity: 1,
     color: 0xfffdeb,
     // side: DoubleSide,
-    // emissive: 0x999999,
+    // emissive: 0x222222,
     // roughness: 0.8,
     metalness: 0,
     map: mapTexture,

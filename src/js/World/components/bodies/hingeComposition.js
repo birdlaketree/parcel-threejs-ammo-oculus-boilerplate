@@ -9,7 +9,6 @@ import { colorStandardMaterial } from "../materials/standardMaterial.js";
 import { tickedGroup } from "../meshes/tickedGroup";
 import { cube } from "../meshes/cube";
 import { sphere } from "../meshes/sphere";
-import { capsule } from "../meshes/capsule";
 import { cylinder } from "../meshes/cylinder";
 
 const hingeComposition = (

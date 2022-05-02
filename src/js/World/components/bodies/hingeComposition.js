@@ -1,8 +1,9 @@
 import { Color } from "three";
 import {
-  physicalMaterialA,
-  physicalMaterialB,
-  matteFrostedPlastics
+  plasticColor,
+  shinyNoiseMetal,
+  matteFrostedPlastics,
+  physicalMaterialShinyMetal
 } from "../materials/physicalMaterial";
 import { colorStandardMaterial } from "../materials/standardMaterial.js";
 import { tickedGroup } from "../meshes/tickedGroup";
@@ -21,10 +22,10 @@ const hingeComposition = (
   console.log('hingeComposition');
 
   const hueShift = hue + Math.random() * 0.2 - 0.1;
-  const s1 = Math.random();
-  const l1 = Math.random()/2;
+  const s1 = 0.96;
+  const l1 = 0.55 + Math.random() * 0.2 - 0.1;
   const s2 = 1;
-  const l2 = Math.random()/2 + 0.5;
+  const l2 = 1;
 
   const color1 = new Color();
   color1.setHSL(hueShift, s1, l1);
@@ -32,18 +33,18 @@ const hingeComposition = (
   const color2 = new Color();
   color2.setHSL(hueShift, s2, l2);
 
-  const materialAPhysical = physicalMaterialA(color1, envmap);
-  const materialBPhysical = physicalMaterialB(color2, envmap);
+  const materialAPhysical = plasticColor(color1, envmap);
+  const materialBPhysical = shinyNoiseMetal(color2, envmap);
   const materialWhite = colorStandardMaterial(0xffffff);
 
   const baseX = position.x;
   const baseY = position.y;
   const baseZ = position.z;
 
-  const widthMax = 1;
-  const widthMin = 0.3;
+  const widthMax = 1.25;
+  const widthMin = 0.25;
 
-  const heightDepthMax = 0.2;
+  const heightDepthMax = 0.25;
   const heightDepthMin = 0.05;
 
   const baseWidth = Math.random() * widthMax + widthMin;

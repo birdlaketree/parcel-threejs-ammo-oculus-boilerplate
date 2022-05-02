@@ -13,7 +13,7 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { AmmoPhysics, PhysicsLoader } from '@enable3d/ammo-physics';
 import { PMREMGenerator } from 'three';
 
-const hdrURL = new URL('/assets/textures/hdr/old_quarry_gerlingen_2k.hdr', import.meta.url);
+const hdrURL = new URL('/assets/textures/hdr/studio_small_08_2k.hdr', import.meta.url);
 
 class World {
   constructor() {
@@ -23,9 +23,7 @@ class World {
     this.lights = createLights(this.scene);
     this.loop = new Loop(this.camera, this.scene, this.renderer);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-
     this.floorSize = 12;
-    this.floor = createFloor(this.scene, this.floorSize, this.floorSize);
 
     const dolly = createDolly(this.camera, this.scene);
     dolly.position.set(0, 0, 0);
@@ -52,8 +50,10 @@ class World {
     console.log('buildScene.4');
     const envmaploader = new PMREMGenerator(this.renderer);
     const envmap = envmaploader.fromCubemap(hdrmap);
+
+    this.floor = createFloor(this.scene, this.floorSize, this.floorSize, envmap);
     
-    const nItems = 12;
+    const nItems = 20;
     const spreadWidth = 10;
     const hue = Math.random();
     // const hue = 0.6;
@@ -65,7 +65,7 @@ class World {
 
     // const sphereMaterial = physicalMaterialShinyMetal(0xffffff, envmap);
     // const s = sphere(sphereMaterial, 1);
-    // this.scene.add(s); 
+    // this.scene.add(s);
   }
 
   start() {

@@ -16,7 +16,7 @@ const frostedPlastic_aoMapUrl           = new URL('/assets/textures/noise-roughn
 const frostedPlastic_normalMapUrl       = new URL('/assets/textures/noise-normal.png', import.meta.url);
 const frostedPlastic_roughnessMapUrl    = new URL('/assets/textures/noise-roughness.png', import.meta.url);
 
-const physicalMaterialA = (color, envmap) => {
+const plasticColor = (color, envmap) => {
   // const mapTexture = textureHandler(mapUrl);
   // const aoTexture = textureHandler(aoMapUrl);
   // const displacementTexture = textureHandler(displacementMapUrl);
@@ -26,12 +26,13 @@ const physicalMaterialA = (color, envmap) => {
 
   const parameters = {
     envMap: envmap.texture,
+    envMapIntensity: 0.9,
 
-    clearcoat: 0.4,
+    clearcoat: 0,
 		metalness: 0.1,
-    roughness: 0.8,
+    roughness: 0.9,
     color: color,
-    emissive: 0x000000,
+    // emissive: 0x000000,
 
     // map: mapTexture,
     // aoMap: aoTexture,
@@ -42,15 +43,15 @@ const physicalMaterialA = (color, envmap) => {
 
     normalMap: normalMap,
 		normalScale: new Vector2( 0.02, 0.02 ),
-		clearcoatNormalMap: clearcoatNormalMap,
-		clearcoatNormalScale: new Vector2( 2.0, 2.0 )
+		// clearcoatNormalMap: clearcoatNormalMap,
+		// clearcoatNormalScale: new Vector2( 2.0, 2.0 )
     // clearcoatNormalScale: new Vector2( 1, 1 )
   }
   const material = new MeshPhysicalMaterial(parameters);
   return material;
 }
 
-const physicalMaterialB = (color, envmap) => {
+const shinyNoiseMetal = (color, envmap) => {
   // const mapTexture = textureHandler(mapUrl);
   // const aoTexture = textureHandler(aoMapUrl);
   // const displacementTexture = textureHandler(displacementMapUrl);
@@ -60,12 +61,13 @@ const physicalMaterialB = (color, envmap) => {
 
   const parameters = {
     envMap: envmap.texture,
+    envMapIntensity: 0.9,
 
-    clearcoat: 0.2,
-		metalness: 0.1,
-    roughness: 0.9,
+    clearcoat: 0,
+		metalness: 0.9,
+    roughness: 0.1,
     color: color,
-    emissive: 0x000000,
+    // emissive: 0x000000,
 
     // map: mapTexture,
     // aoMap: aoTexture,
@@ -74,8 +76,8 @@ const physicalMaterialB = (color, envmap) => {
     // displacementBias: -0.5,
     // roughnessMap: roughnessTexture,
 
-    // normalMap: normalMap,
-		// normalScale: new Vector2( 0.02, 0.02 ),
+    normalMap: normalMap,
+		normalScale: new Vector2( 0.02, 0.02 ),
 		// clearcoatNormalMap: clearcoatNormalMap,
 		// clearcoatNormalScale: new Vector2( 2.0, - 2.0 )
   }
@@ -101,7 +103,7 @@ const matteFrostedPlastics = (color, envmap) => {
 		metalness: 0.04,
     roughness: 0.34,
     // color: color,
-    emissive: 0x000000,
+    // emissive: 0x000000,
 
     transmission: 0.2,
     reflectivity: 0.4,
@@ -142,8 +144,8 @@ const physicalMaterialShinyMetal = (color, envmap) => {
 }
 
 export {
-  physicalMaterialA,
-  physicalMaterialB,
+  plasticColor,
+  shinyNoiseMetal,
   matteFrostedPlastics,
   physicalMaterialShinyMetal
 };

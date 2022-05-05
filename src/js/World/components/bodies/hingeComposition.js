@@ -23,8 +23,10 @@ const hingeComposition = (
   console.log('hingeComposition');
 
   const hueShift = hue + Math.random() * 0.2 - 0.1;
+  // const s1 = 0.96;
+  // const l1 = 0.55 + Math.random() * 0.2 - 0.1;
   const s1 = 0.96;
-  const l1 = 0.55 + Math.random() * 0.2 - 0.1;
+  const l1 = 0.85 + Math.random() * 0.2 - 0.1;
   const s2 = 1;
   const l2 = 1;
 
@@ -34,7 +36,7 @@ const hingeComposition = (
   const color2 = new Color();
   color2.setHSL(hueShift, s2, l2);
 
-  const materialAPhysical = plasticColor(color1, envmap);
+  const materialAPhysical = matteFrostedPlastics(color1, envmap);
   const materialBPhysical = shinyNoiseMetal(color2, envmap);
   const materialWhite = colorStandardMaterial(0xffffff);
 

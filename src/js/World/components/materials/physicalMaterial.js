@@ -96,24 +96,28 @@ const matteFrostedPlastics = (color, envmap) => {
 
   const parameters = {
     envMap: envmap.texture,
-    envMapIntensity: 0.6,
+    envMapIntensity: 0.8,
 
     clearcoat: 0.1,
-    clearcoatRoughness: 0.5,
-		metalness: 0.04,
-    roughness: 0.34,
-    // color: color,
+    clearcoatRoughness: 0.8,
+		metalness: 0,
+    roughness: 0.1,
+    color: color,
+    // color: 0xdddff,
     // emissive: 0x000000,
 
     transmission: 0.2,
-    reflectivity: 0.4,
-    ior: 1.6, // from 1.0 to 2.333
+    reflectivity: 0,
+    ior: 2.1, // from 1.0 to 2.333
     specularIntensity: 0.2,
-    // thickness: 0.0,
+    // thickness: 0.0001,
+    thickness: 0.04,
+
+    sheen: 0,
 
     // side: DoubleSide,
-    opacity: 0.90,
-		transparent: true,
+    // opacity: 0.90,
+		// transparent: false,
 
     // map: roughnessTexture,
     aoMap: aoTexture,

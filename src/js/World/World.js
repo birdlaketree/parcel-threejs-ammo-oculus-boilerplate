@@ -12,7 +12,7 @@ import { physicalMaterialShinyMetal} from './components/materials/physicalMateri
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { AmmoPhysics, PhysicsLoader } from '@enable3d/ammo-physics';
 import { PMREMGenerator } from 'three';
-import { matteFrostedPlastics, shinyNoiseMetal, plasticColor } from './components/materials/physicalMaterial.js';
+import { plasticColor } from './components/materials/physicalMaterial.js';
 
 const hdrURL = new URL('/assets/textures/hdr/studio_small_08_2k.hdr', import.meta.url);
 
@@ -48,7 +48,7 @@ class World {
   }
 
   buildScene(hdrmap) {
-    console.log('buildScene.4');
+    console.log('buildScene.5');
     const envmaploader = new PMREMGenerator(this.renderer);
     const envmap = envmaploader.fromCubemap(hdrmap);
 

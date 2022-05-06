@@ -97,6 +97,8 @@ const hingeComposition = (
 
   physics.add.existing(base);
   physics.add.existing(handleA);
+  base.body.setBounciness(0.7);
+  handleA.body.setBounciness(0.7);
 
   physics.add.constraints.hinge(base.body, handleA.body, {
     pivotA: { x: -baseWidth/2 + baseHeightDepth/2, z: baseHeightDepth/2 },

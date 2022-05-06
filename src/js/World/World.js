@@ -42,13 +42,14 @@ class World {
     this.loop.setPhysics(this.physics);
 
     const ground = this.physics.add.ground({ width: this.floorSize, height: this.floorSize, depth: 10, y:-5 });
+    ground.body.setBounciness(0.7);
     ground.visible = false;
 
     new RGBELoader().load(hdrURL, (hdrmap) => this.buildScene(hdrmap));
   }
 
   buildScene(hdrmap) {
-    console.log('buildScene.5');
+    console.log('buildScene.6');
     const envmaploader = new PMREMGenerator(this.renderer);
     const envmap = envmaploader.fromCubemap(hdrmap);
 

@@ -16,6 +16,11 @@ const frostedPlastic_aoMapUrl           = new URL('/assets/textures/noise-roughn
 const frostedPlastic_normalMapUrl       = new URL('/assets/textures/noise-normal.png', import.meta.url);
 const frostedPlastic_roughnessMapUrl    = new URL('/assets/textures/noise-roughness.png', import.meta.url);
 
+const shinyNoiseMetal_normalMapUrl       = new URL('/assets/textures/rmpkcg0p_4K_Normal.jpg', import.meta.url);
+const shinyNoiseMetal_roughnessMapUrl    = new URL('/assets/textures/rmpkcg0p_4K_Roughness.jpg', import.meta.url);
+const shinyNoiseMetal_metalnessMapUrl    = new URL('/assets/textures/rmpkcg0p_4K_Metalness.jpg', import.meta.url);
+const shinyNoiseMetal_aoMapUrl    = new URL('/assets/textures/rmpkcg0p_4K_ao.jpg', import.meta.url);
+
 const plasticColor = (color, envmap) => {
   // const mapTexture = textureHandler(mapUrl);
   // const aoTexture = textureHandler(aoMapUrl);
@@ -53,33 +58,39 @@ const plasticColor = (color, envmap) => {
 
 const shinyNoiseMetal = (color, envmap) => {
   // const mapTexture = textureHandler(mapUrl);
-  // const aoTexture = textureHandler(aoMapUrl);
+  const aoTexture = textureHandler(shinyNoiseMetal_aoMapUrl);
   // const displacementTexture = textureHandler(displacementMapUrl);
-  const normalMap = textureHandler(physicalMaterial_normalMapUrl);
+  const normalMap = textureHandler(shinyNoiseMetal_normalMapUrl);
   const clearcoatNormalMap = textureHandler(physicalMaterial_clearcoatNormalMapUrl);
-  // const roughnessTexture = textureHandler(roughnessMapUrl);
+  const roughnessTexture = textureHandler(shinyNoiseMetal_roughnessMapUrl);
+  const metalnessMap = textureHandler(shinyNoiseMetal_metalnessMapUrl);
 
   const parameters = {
     envMap: envmap.texture,
     envMapIntensity: 0.9,
 
     clearcoat: 0,
-		metalness: 0.9,
-    roughness: 0.1,
     color: color,
     // emissive: 0x000000,
 
     // map: mapTexture,
-    // aoMap: aoTexture,
+    aoMap: aoTexture,
+
     // displacementMap: displacementTexture,
     // displacementScale: 1,
     // displacementBias: -0.5,
-    // roughnessMap: roughnessTexture,
+
+    roughnessMap: roughnessTexture,
+    roughness: 0.3,
 
     normalMap: normalMap,
-		normalScale: new Vector2( 0.02, 0.02 ),
+		normalScale: new Vector2( 0.1, 0.1 ),
+
 		// clearcoatNormalMap: clearcoatNormalMap,
 		// clearcoatNormalScale: new Vector2( 2.0, - 2.0 )
+
+    metalnessMap: metalnessMap,
+    metalness: 0.98
   }
   const material = new MeshPhysicalMaterial(parameters);
   return material;

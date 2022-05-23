@@ -35,7 +35,7 @@ class World {
   }
 
   ammoStart() {
-    console.log('ammoStart.4');
+    console.log('ammoStart.8');
 
     this.physics = new AmmoPhysics(this.scene);
     // this.physics.debug.enable(true);
@@ -49,13 +49,13 @@ class World {
   }
 
   buildScene(hdrmap) {
-    console.log('buildScene.6');
+    console.log('buildScene.8');
     const envmaploader = new PMREMGenerator(this.renderer);
     const envmap = envmaploader.fromCubemap(hdrmap);
 
     this.floor = createFloor(this.scene, this.floorSize, this.floorSize, envmap);
     
-    const nItems = 20;
+    const nItems = 10;
     const spreadWidth = 10;
     const hue = Math.random();
     // const hue = 0.6;

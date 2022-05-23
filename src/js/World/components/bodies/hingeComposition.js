@@ -66,10 +66,12 @@ const hingeComposition = (
   base.rotation.z = Math.random();
   scene.add(base);
 
-  const bodyAWidth = Math.random() * widthMax + widthMin;
-  const bodyHeightDepth = Math.random() * heightDepthMax + heightDepthMin;
+  // const bodyAWidth = Math.random() * widthMax + widthMin;
+  // const bodyHeightDepth = Math.random() * heightDepthMax + heightDepthMin;
   // const bodyAWidth = 1;
   // const bodyHeightDepth = 0.1;
+  const bodyAWidth = 0.5;
+  const bodyHeightDepth = 0.5;
 
   const handleA = tickedGroup();
   handleA.position.x = baseX -baseWidth/2 + baseHeightDepth/2;
